@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:G26W12WPFControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="노래 정보" Height="450" Width="400">
+    <Border Padding="10">
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock Text="노래 입력" 
+                    FontWeight="Bold"
+                    Margin="0, 10"/>
+                <TextBlock Text="제목"/>
+                <TextBox Padding="2"
+                    Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
 
-    </Grid>
+                <TextBlock Text="가수" Margin="0, 10, 0, 0"/>
+                <TextBox Padding="2"
+                    Text="{Binding Singer, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="장르" Margin="0, 10, 0, 0"/>
+                <ComboBox Padding="2"
+                    ItemsSource="{Binding Genres}"
+                    SelectedItem="{Binding Genre}"/>
+
+                <Button Content="추가" Margin="0, 20, 0, 0"
+                    Command="{Binding AddSongCommand}"/>
+            </StackPanel>
+
+            <TextBox Margin="0, 20, 0, 0"
+                IsReadOnly="True" Background="LightGray"
+                AcceptsReturn="True"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                Text="{Binding Result, Mode=OneWay}"
+                DockPanel.Dock="Bottom"/>
+        </DockPanel>
+    </Border>
 </Window>
